@@ -4,9 +4,7 @@
 
 Sebuah *scroll-driven data visualisation essay* tentang ketidakadilan iklim di kawasan Pasifik, dibuat untuk **Pacific Dataviz Challenge 2026**.
 
-'''
 https://safaayuartnti.github.io/pasific-dataviz/
-'''
 
 **Authors:** Muhammad Eka Dimas Saputra · Ni Luh Made Sri Utami · Safa Ayu Artanti  
 **Origin:** Indonesia
