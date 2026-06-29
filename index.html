@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Pacific Paradox: A Climate Data Story</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Inter:wght@300;400;500;600&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<!-- ── SCROLL PROGRESS ───────────────────────────────── -->
+<div class="scroll-progress-track"><div class="scroll-progress-bar" id="scrollProgressBar"></div></div>
+
+<!-- ── NAVIGATION ─────────────────────────────────────── -->
+<nav class="nav" id="nav">
+  <div class="nav-logo">Pacific Paradox</div>
+  <div class="nav-chapters">
+    <a href="#cover" class="nav-ch active">Introduction</a>
+    <a href="#cause" class="nav-ch">The Cause</a>
+    <a href="#evidence" class="nav-ch">Evidence</a>
+    <a href="#human" class="nav-ch">Human Cost</a>
+    <a href="#life" class="nav-ch">Long-term Impact</a>
+    <a href="#story" class="nav-ch">The Paradox</a>
+    <a href="#conclusion" class="nav-ch">Conclusion</a>
+  </div>
+  <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light mode">
+    <span class="toggle-icon">◐</span>
+  </button>
+</nav>
+
+<!-- ── COVER ─────────────────────────────────────────── -->
+<section class="cover" id="cover">
+  <div class="cover-bg"></div>
+  <div class="cover-content" id="coverContent">
+    <div class="cover-label">Pacific Dataviz Challenge 2026</div>
+    <h1 class="cover-title">Pacific<br/><em>Paradox</em></h1>
+    <p class="cover-sub">Who contributes the least to climate change.<br/>Who bears the heaviest consequences.</p>
+    <div class="cover-stats" id="coverStats">
+      <div class="cs-item">
+        <span class="cs-val" id="cs-ghg">0.0</span>
+        <span class="cs-label">average tons of CO₂ per person<br/>across Pacific island nations</span>
+        <div class="cs-bar" id="cs-ghg-bar"></div>
+      </div>
+      <div class="cs-divider">vs</div>
+      <div class="cs-item danger">
+        <span class="cs-val" id="cs-affected">0</span>
+        <span class="cs-label">people directly affected<br/>by climate disasters</span>
+        <div class="cs-bar" id="cs-affected-bar"></div>
+      </div>
+    </div>
+    <div class="scroll-hint">
+      <span>Scroll to explore the story</span>
+      <div class="scroll-arrow" id="scrollArrow">↓</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CHAPTER 1: THE CAUSE ─────────────────────── -->
+<section class="chapter" id="cause">
+  <div class="chapter-inner">
+    <div class="chapter-label reveal">Chapter 01: The Cause</div>
+    <h2 class="chapter-title reveal">They burn almost nothing.<br/>The world burns everything.</h2>
+    <p class="chapter-intro reveal">Greenhouse gas emissions per capita reveal a striking disparity. Pacific Island nations are among the world's smallest contributors to climate change — yet they pay the highest price for it.</p>
+
+    <div class="section-row">
+      <div class="chart-area reveal">
+        <div class="chart-header">
+          <span class="chart-title">GHG Emissions per Capita — Pacific Nations</span>
+          <span class="chart-unit">tons CO₂ equivalent / person</span>
+        </div>
+        <p class="chart-narrative">This chart is the starting point of the entire argument: each country is ranked by its per-person greenhouse gas footprint. The shorter the bar, the smaller the country's role in creating a crisis that, in later chapters, falls most heavily on them.</p>
+        <div class="bar-chart-wrap" id="ghgBarChart"></div>
+        <div class="chart-hint"><span class="dot"></span> Click a bar to compare it against the global average</div>
+        <div class="chart-callout" id="ghgCallout"></div>
+        <div class="chart-caption">Data: Pacific Data Hub, SPC. Dataset: DF_CLIMATE_CHANGE.</div>
+      </div>
+      <div class="insight-panel reveal">
+        <div class="insight-number" id="in-ghg-lowest">—</div>
+        <div class="insight-text">The lowest emitter among Pacific nations — just a fraction of the global average of <strong>4.7 tons CO₂e</strong>.</div>
+        <hr class="insight-hr"/>
+        <div class="insight-stat-row">
+          <div>
+            <div class="is-val" id="in-ghg-pacific">—</div>
+            <div class="is-label">Pacific Average</div>
+          </div>
+          <div>
+            <div class="is-val danger">~4.7</div>
+            <div class="is-label">Global Average</div>
+          </div>
+          <div>
+            <div class="is-val danger">~14.2</div>
+            <div class="is-label">Australia</div>
+          </div>
+        </div>
+        <p class="insight-note">Pacific Island nations collectively contribute less than <strong>0.03%</strong> of global emissions, yet face climate threats that endanger their very existence.</p>
+      </div>
+    </div>
+
+    <div class="section-row mt-lg">
+      <div class="chart-area full reveal">
+        <div class="chart-header">
+          <span class="chart-title">Emission Trends Over Time — Selected Countries</span>
+          <span class="chart-unit">tons CO₂e / person</span>
+        </div>
+        <p class="chart-narrative">Why does this matter beyond a single year? Because the pattern has held for five decades. While industrialized nations multiplied their emissions, most Pacific nations stayed low and flat. This baseline becomes the reference point throughout the rest of this story.</p>
+        <div class="country-selector" id="ghgCountrySelector"></div>
+        <div id="ghgLineChart" class="line-chart-wrap"></div>
+        <div class="chart-hint"><span class="dot"></span> Click a country chip to add or remove it from the comparison</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CHAPTER 2: EVIDENCE ─────────────────────── -->
+<section class="chapter chapter-alt" id="evidence">
+  <div class="chapter-inner">
+    <div class="chapter-label reveal">Chapter 02: Evidence</div>
+    <h2 class="chapter-title reveal">The ocean is warming.<br/>The rain is shifting.<br/>The sea is rising.</h2>
+    <p class="chapter-intro reveal">Four physical signals, recorded in data stretching back to 1850, tell the same story: the climate around Pacific Island nations is changing faster than almost anywhere else on Earth.</p>
+    <p class="chart-narrative reveal">Why show four signals at once, rather than one? Because each is measured independently — with different instruments, over different time spans. When all four move in the same direction simultaneously, it is no longer coincidence. It is a pattern: the physical evidence behind the tiny emission footprint shown in Chapter 1.</p>
+
+    <div class="evidence-grid" id="evidenceGrid">
+      <!-- SST -->
+      <div class="ev-card">
+        <div class="ev-icon">🌡</div>
+        <div class="ev-label">Sea Surface Temperature Anomaly</div>
+        <div class="ev-val" id="ev-sst">—</div>
+        <div class="ev-unit">°C above baseline, Fiji, latest year</div>
+        <div id="evSSTChart" class="ev-spark"></div>
+        <p class="ev-note">In Fiji, warmer waters fuel stronger cyclones and bleach the coral reefs that protect coastlines and feed local fishing communities.</p>
+      </div>
+      <!-- Surface Temp -->
+      <div class="ev-card">
+        <div class="ev-icon">☀️</div>
+        <div class="ev-label">Land Surface Temperature Anomaly</div>
+        <div class="ev-val" id="ev-temp">—</div>
+        <div class="ev-unit">°C above baseline, Fiji, latest year</div>
+        <div id="evTempChart" class="ev-spark"></div>
+        <p class="ev-note">Hotter land in Fiji increases heat stress for outdoor workers and adds pressure to harvests already strained by shifting rainfall.</p>
+      </div>
+      <!-- Rain -->
+      <div class="ev-card">
+        <div class="ev-icon">🌧</div>
+        <div class="ev-label">Rainfall Anomaly</div>
+        <div class="ev-val" id="ev-rain">—</div>
+        <div class="ev-unit">mm deviation, Fiji, latest year</div>
+        <div id="evRainChart" class="ev-spark"></div>
+        <p class="ev-note">Increasingly erratic rainfall in Fiji means sharper floods in the wet season and longer droughts in between — both damaging to agriculture.</p>
+      </div>
+      <!-- Sea Level -->
+      <div class="ev-card">
+        <div class="ev-icon">🌊</div>
+        <div class="ev-label">Sea Level Anomaly</div>
+        <div class="ev-val" id="ev-sea">—</div>
+        <div class="ev-unit">meters above 1993 baseline, Fiji</div>
+        <div id="evSeaChart" class="ev-spark"></div>
+        <p class="ev-note">Rising seas are already pushing saltwater into coastal farmland and freshwater wells — a warning sign shared by lower-lying neighbors like Tuvalu and Kiribati.</p>
+      </div>
+    </div>
+
+    <div class="section-row mt-lg">
+      <div class="chart-area full reveal">
+        <div class="chart-header">
+          <span class="chart-title">Sea Surface Temperature Anomaly — Pacific Nations</span>
+          <span class="chart-unit">°C, 1980 to 2025</span>
+        </div>
+        <p class="chart-narrative">Warmer oceans drive stronger cyclones and bleach the coral reefs that protect coastlines and sustain local fisheries. This chart tracks that warming country by country — to see if any nation has been spared. None have.</p>
+        <div class="legend-chips" id="sstLegend"></div>
+        <div id="sstLineChart" class="line-chart-wrap"></div>
+        <div class="chart-hint"><span class="dot"></span> Click a country to highlight its trend in isolation</div>
+      </div>
+    </div>
+
+    <div class="section-row mt-md">
+      <div class="chart-area full reveal">
+        <div class="chart-header">
+          <span class="chart-title">Sea Level Rise — Cumulative Since 1993</span>
+          <span class="chart-unit">meters, selected countries</span>
+        </div>
+        <p class="chart-narrative">For atoll nations whose land sits only a few meters above sea level, these lines are not just numbers — they are countdowns. And they connect directly to Chapter 4: rising seas are already salting the same land and wells these communities depend on to survive.</p>
+        <div class="legend-chips" id="seaLevelLegend"></div>
+        <div id="seaLevelChart" class="line-chart-wrap"></div>
+        <div class="chart-hint"><span class="dot"></span> Click a country to highlight its trend in isolation</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CHAPTER 3: HUMAN COST ─────────────────────── -->
+<section class="chapter" id="human">
+  <div class="chapter-inner">
+    <div class="chapter-label reveal">Chapter 03: Human Cost</div>
+    <h2 class="chapter-title reveal">Behind every number,<br/>there are people. Families. Homes.</h2>
+    <p class="chapter-intro reveal">Climate disasters are not abstract events. They displace communities, destroy livelihoods, and erase decades of economic progress in a single storm.</p>
+
+    <div class="section-row">
+      <div class="chart-area reveal">
+        <div class="chart-header">
+          <span class="chart-title">People Directly Affected by Disasters</span>
+          <span class="chart-unit">persons, total recorded</span>
+        </div>
+        <p class="chart-narrative">This is where the emissions and warming from the previous chapters become something measurable in human terms: how many people have actually been displaced, injured, or left homeless by disasters in each country.</p>
+        <div id="affectedChart" class="bar-chart-wrap"></div>
+        <div class="chart-hint"><span class="dot"></span> Click a bar to see its share of the total</div>
+        <div class="chart-callout danger" id="affectedCallout"></div>
+      </div>
+      <div class="insight-panel reveal">
+        <div class="insight-number" id="in-total-affected">—</div>
+        <div class="insight-text">total people across Pacific nations directly affected by climate disasters in all recorded data.</div>
+        <hr class="insight-hr"/>
+        <div class="insight-note-box">
+          <p>In 2017 alone, Fiji recorded <strong>633,584 people</strong> affected — equivalent to the entire population of Fiji at the time.</p>
+          <p class="mt-sm">Cyclone Pam, which struck Vanuatu in 2015, impacted <strong>246,802</strong> people — or 88% of its entire population.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-row mt-lg">
+      <div class="chart-area full reveal">
+        <div class="chart-header">
+          <span class="chart-title">People Affected, Year by Year</span>
+          <span class="chart-unit">Pacific-wide total, persons per year</span>
+        </div>
+        <p class="chart-narrative">Country totals hide the timing. This view spreads the same data across the calendar, so that an exceptionally bad year stands out from the rest — and we can ask: what happened that year?</p>
+        <div id="affectedTimelineChart" class="bar-chart-wrap" style="height:280px"></div>
+        <div class="chart-hint"><span class="dot"></span> The highlighted bar marks the worst year in this record</div>
+        <div class="chart-callout danger" id="timelineCallout"></div>
+      </div>
+    </div>
+
+    <div class="section-row mt-lg">
+      <div class="chart-area full reveal">
+        <div class="chart-header">
+          <span class="chart-title">Economic Losses from Disasters</span>
+          <span class="chart-unit">USD, direct losses, most affected countries</span>
+        </div>
+        <p class="chart-narrative">Disasters don't just displace people — they erase economic progress. A single catastrophic year, like the one highlighted here, can cost more than a decade of development for a small island economy.</p>
+        <div class="legend-chips" id="econLegend"></div>
+        <div id="econLossChart" class="bar-chart-wrap" style="height:320px"></div>
+        <div class="chart-hint"><span class="dot"></span> Click a country to highlight its losses year by year</div>
+        <div class="chart-caption">Note: economic loss data is sparse. Many disasters are never recorded in monetary terms.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CHAPTER 4: LONG-TERM IMPACT ─────────────────────── -->
+<section class="chapter chapter-alt" id="life">
+  <div class="chapter-inner">
+    <div class="chapter-label reveal">Chapter 04: Long-term Impact</div>
+    <h2 class="chapter-title reveal">When the harvest fails.<br/>When the water runs dry.</h2>
+    <p class="chapter-intro reveal">Climate change does not always strike dramatically. It also erodes slowly — through declining crop yields, struggling livestock, and freshwater that grows scarcer every year.</p>
+    <p class="chart-narrative reveal">If the previous three chapters explained the cause and the sudden shocks, this chapter shows the slow bleed: the food and water systems that quietly deteriorate day by day.</p>
+
+    <div class="three-col" id="lifeMetricsRow">
+      <!-- Crop -->
+      <div class="metric-card">
+        <div class="mc-label">Crop Yield</div>
+        <div class="mc-val" id="mc-crop">—</div>
+        <div class="mc-unit">kg per hectare, Fiji, latest year</div>
+        <div id="cropSparkChart" class="mc-spark"></div>
+        <p class="mc-desc">Crop yields across Pacific nations reflect compounding pressures: erratic rainfall, soil salinization from rising seas, and repeated extreme weather events.</p>
+      </div>
+      <!-- Livestock -->
+      <div class="metric-card">
+        <div class="mc-label">Livestock Yield</div>
+        <div class="mc-val" id="mc-live">—</div>
+        <div class="mc-unit">kg per head, Fiji, latest year</div>
+        <div id="liveSparkChart" class="mc-spark"></div>
+        <p class="mc-desc">Livestock productivity is falling under heat stress and disrupted feed cycles — both direct consequences of the rising temperatures documented in Chapter 2.</p>
+      </div>
+      <!-- Water -->
+      <div class="metric-card">
+        <div class="mc-label">Safe Drinking Water</div>
+        <div class="mc-val" id="mc-water">—</div>
+        <div class="mc-unit">% of population with access, lowest country</div>
+        <div id="waterSparkChart" class="mc-spark"></div>
+        <p class="mc-desc">Access to clean water remains critically low in some nations, and is increasingly threatened by saltwater intrusion as sea levels continue to rise.</p>
+      </div>
+    </div>
+
+    <div class="section-row mt-lg">
+      <div class="chart-area full reveal">
+        <div class="chart-header">
+          <span class="chart-title">Safe Drinking Water Access by Country</span>
+          <span class="chart-unit">% of population, latest year</span>
+        </div>
+        <p class="chart-narrative">Access to safe drinking water should be universal. But in practice, it correlates closely with the climate pressures each country faces from Chapter 2: the nations with the highest water insecurity are often the same ones enduring the most severe rainfall disruptions and saltwater intrusion.</p>
+        <div id="waterBarChart" class="bar-chart-wrap" style="height:360px"></div>
+        <div class="chart-hint"><span class="dot"></span> Click a bar to see what is at stake</div>
+        <div class="chart-callout" id="waterCallout"></div>
+      </div>
+    </div>
+
+    <div class="section-row mt-md">
+      <div class="chart-area full reveal">
+        <div class="chart-header">
+          <span class="chart-title">Crop Yields Over Time — Pacific Nations</span>
+          <span class="chart-unit">kg per hectare, 1961 to 2022</span>
+        </div>
+        <p class="chart-narrative">If emissions cause warming, and warming disrupts rainfall, then this is where the consequences land: on the dinner table. Six decades of crop yield data show a slow downward drift, punctuated by sharper drops in years of extreme weather.</p>
+        <div class="legend-chips" id="cropLegend"></div>
+        <div id="cropLineChart" class="line-chart-wrap"></div>
+        <div class="chart-hint"><span class="dot"></span> Click a country to highlight its trend in isolation</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CHAPTER 5: PARADOX (SCROLLYTELLING) ──────── -->
+<section class="chapter paradox-chapter" id="story">
+  <div class="chapter-inner">
+    <div class="chapter-label reveal">Chapter 05: The Pacific Paradox</div>
+    <h2 class="chapter-title paradox-title reveal">They did not cause this.<br/><em>They cannot escape it.</em></h2>
+    <p class="chapter-intro reveal">Scroll slowly. Watch the pattern emerge.</p>
+
+    <div class="scrolly">
+      <div class="scrolly-sticky">
+        <div class="scatter-header">
+          <div class="chart-title" id="scrollyChartTitle">Twelve Nations, Mapped</div>
+          <div class="chart-unit">Emissions per capita vs. people affected by disasters</div>
+        </div>
+        <div id="paradoxScatter" class="scatter-wrap scatter-wrap-lg"></div>
+        <div class="scatter-note" id="scrollyNote">Each circle represents one Pacific nation. Circle size reflects the number of people affected by disasters.</div>
+        <div class="chart-hint"><span class="dot"></span> Click any circle to see its full story</div>
+      </div>
+
+      <div class="scrolly-steps">
+        <div class="scrolly-step" data-step="0">
+          <div class="scrolly-step-num">01 / 05</div>
+          <div class="scrolly-step-title">Twelve nations. One ocean.</div>
+          <div class="scrolly-step-body">Here are every Pacific nation in our dataset, plotted by what they emit and how many people have been affected by climate disasters. At first glance, they look roughly equal.</div>
+        </div>
+        <div class="scrolly-step" data-step="1">
+          <div class="scrolly-step-num">02 / 05</div>
+          <div class="scrolly-step-title">Most of them barely contribute.</div>
+          <div class="scrolly-step-body">Marshall Islands, Nauru, Tuvalu, and Kiribati release only a fraction of a ton of CO₂ per person each year. Their entire populations could vanish from the global emissions ledger and the numbers would barely shift.</div>
+        </div>
+        <div class="scrolly-step" data-step="2">
+          <div class="scrolly-step-num">03 / 05</div>
+          <div class="scrolly-step-title">But disasters don't care who is responsible.</div>
+          <div class="scrolly-step-body">Fiji, Solomon Islands, and Vanuatu are hit repeatedly by cyclones and floods. Hundreds of thousands of people are affected, again and again — regardless of how little carbon their countries have ever burned.</div>
+        </div>
+        <div class="scrolly-step" data-step="3">
+          <div class="scrolly-step-num">04 / 05</div>
+          <div class="scrolly-step-title">Low emissions. High impact. Same countries.</div>
+          <div class="scrolly-step-body">Overlay both perspectives, and a quadrant emerges: nations that have contributed almost nothing to this crisis, yet carry a wildly disproportionate share of the consequences. This is the paradox zone.</div>
+        </div>
+        <div class="scrolly-step" data-step="4">
+          <div class="scrolly-step-num">05 / 05</div>
+          <div class="scrolly-step-title">This is not a coincidence. It is a pattern.</div>
+          <div class="scrolly-step-body">Geography decides who stands at the front line. Industrial history decides who lit the fire. The Pacific did not start this — but it stands closest to the flames.</div>
+          <div class="scrolly-progress" id="scrollyProgress"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="paradox-quote reveal">
+      <blockquote>"We are not drowning. We are fighting."</blockquote>
+      <cite>Pacific Climate Warriors</cite>
+    </div>
+
+    <p class="chart-narrative reveal" style="margin-top:40px;">These four numbers summarize the entire story in a single view: an extremely small cause, paired with an extremely large cost.</p>
+
+    <div class="kpi-row" id="kpiRow">
+      <div class="kpi-box" id="kpi1">
+        <div class="kpi-val">—</div>
+        <div class="kpi-label">Nations with latest SST anomaly above +0.5°C</div>
+      </div>
+      <div class="kpi-box" id="kpi2">
+        <div class="kpi-val">—</div>
+        <div class="kpi-label">Average Pacific GHG emissions per capita, tons CO₂e</div>
+      </div>
+      <div class="kpi-box" id="kpi3">
+        <div class="kpi-val">—</div>
+        <div class="kpi-label">Total people affected by disasters across all records</div>
+      </div>
+      <div class="kpi-box" id="kpi4">
+        <div class="kpi-val">—</div>
+        <div class="kpi-label">Highest single-country disaster impact recorded</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CONCLUSION ─────────────────────────────────────── -->
+<section class="chapter conclusion-chapter" id="conclusion">
+  <div class="chapter-inner">
+    <div class="chapter-label reveal">Closing Note</div>
+    <h2 class="chapter-title reveal">This is what the data leaves us with.</h2>
+    <p class="chapter-intro reveal">Five chapters, one thread: the nations least responsible for climate change bear the heaviest burden from it. Here is what the numbers say.</p>
+
+    <div class="recap-grid" id="recapGrid">
+      <div class="recap-card">
+        <div class="recap-num">01</div>
+        <div class="recap-title">The Cause</div>
+        <div class="recap-body">Pacific nations emit only a fraction of a ton of CO₂ per person, while the global average approaches 4.7 tons. Their footprint is nearly invisible in the global emissions ledger.</div>
+      </div>
+      <div class="recap-card">
+        <div class="recap-num">02</div>
+        <div class="recap-title">The Evidence</div>
+        <div class="recap-body">Sea surface temperatures, land temperatures, rainfall, and sea levels are all moving in the same direction: up, and faster than before.</div>
+      </div>
+      <div class="recap-card">
+        <div class="recap-num">03</div>
+        <div class="recap-title">The Human Cost</div>
+        <div class="recap-body">More than a million people across the Pacific have been directly affected by disasters. Some nations have lost the equivalent of their entire population in a single year.</div>
+      </div>
+      <div class="recap-card">
+        <div class="recap-num">04</div>
+        <div class="recap-title">The Long-term Impact</div>
+        <div class="recap-body">Crop yields are declining, livestock productivity is weakening, and safe drinking water remains out of reach for many. The damage is slow — but its effects endure.</div>
+      </div>
+    </div>
+
+    <div class="conclusion-statement reveal">
+      <p>The Pacific did not create this crisis. Yet its nations are asked to adapt the fastest, lose the most, and speak the loudest just to be heard. If climate justice has any meaning, it begins with acknowledging who is paying the price for a fire they did not start.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ─────────────────────────────────────────── -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-left">
+      <div class="footer-title">Pacific Paradox</div>
+      <p>A data-driven visual essay on climate injustice in the Pacific region.</p>
+      <p>Submitted for the Pacific Dataviz Challenge 2026. Theme: Climate Change.</p>
+      <p class="footer-authors">Authors: Muhammad Eka Dimas Saputra, Ni Luh Made Sri Utami, Safa Ayu Artanti.<br/>Origin: Indonesia.</p>
+    </div>
+    <div class="footer-right">
+      <div class="footer-sources">
+        <div class="footer-sources-title">Data Sources</div>
+        <a href="https://stats.pacificdata.org/" target="_blank">stats.pacificdata.org</a>
+        <span>Pacific Data Hub, SPC (Secretariat of the Pacific Community)</span>
+        <span>Datasets: DF_CLIMATE_CHANGE, DF_SDG_11, DF_SDG_06, DF_AGRICULTURAL_PRODUCTION</span>
+        <span>Data period: 1850 to 2025</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.4.3/echarts.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
