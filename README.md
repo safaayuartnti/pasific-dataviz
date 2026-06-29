@@ -10,7 +10,7 @@ From: Indonesia
 Once deployed to GitHub Pages (see below), the site is reachable at:
 
 ```
-https://<your-username>.github.io/<repository-name>/
+https://safaayuartnti.github.io/pasific-datafiz/
 ```
 
 ## Project structure
